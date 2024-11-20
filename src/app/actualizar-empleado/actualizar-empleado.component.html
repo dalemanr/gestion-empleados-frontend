@@ -1,0 +1,77 @@
+<div class="col-md-6 offset-md-3">
+    <h3 class="text-center">Edicion de empleado</h3>
+
+    <form (ngSubmit)="onSubmit()" #empleadoForm="ngForm">
+        <!-- Campo Nombre -->
+        <div class="form-group">
+            <input 
+                type="text" 
+                class="form-control" 
+                id="nombre" 
+                [(ngModel)]="empleado.nombre" 
+                name="nombre" 
+                placeholder="Nombre: " 
+                required 
+                #nombre="ngModel">
+            
+            <div 
+                class="alert alert-danger" 
+                *ngIf="nombre?.invalid && (nombre?.dirty || nombre?.touched)">
+                <div *ngIf="nombre?.errors?.['required']">
+                    Digite su nombre por favor
+                </div>
+            </div>
+        </div>
+
+        <!-- Campo Apellido -->
+        <div class="form-group">
+            <input 
+                type="text" 
+                class="form-control" 
+                id="apellido" 
+                [(ngModel)]="empleado.apellido" 
+                name="apellido" 
+                placeholder="Apellido: " 
+                required 
+                #apellido="ngModel">
+            
+            <div 
+                class="alert alert-danger" 
+                *ngIf="apellido?.invalid && (apellido?.dirty || apellido?.touched)">
+                <div *ngIf="apellido?.errors?.['required']">
+                    Digite su apellido por favor
+                </div>
+            </div>
+        </div>
+
+        <!-- Campo Email -->
+        <div class="form-group">
+            <input 
+                type="email" 
+                class="form-control" 
+                id="email" 
+                [(ngModel)]="empleado.email" 
+                name="email" 
+                placeholder="Email: " 
+                required 
+                #email="ngModel" 
+                pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*&#64;[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}">
+            
+            <div 
+                class="alert alert-danger" 
+                *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+                <div *ngIf="email?.errors?.['required']">
+                    Digite su email por favor
+                </div>
+                <div *ngIf="email?.errors?.['pattern']">
+                    Por favor digite un email válido
+                </div>
+            </div>
+        </div>
+
+        <!-- Botón Guardar -->
+        <button class="btn btn-success" [disabled]="!empleadoForm.valid">
+            Guardar
+        </button>
+    </form>
+</div>
